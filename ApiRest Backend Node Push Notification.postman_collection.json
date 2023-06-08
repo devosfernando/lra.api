@@ -1,0 +1,585 @@
+{
+	"info": {
+		"_postman_id": "7855c882-ddb7-46c4-84ae-9529694ebfc9",
+		"name": "ApiRest Backend Node Push Notification",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12253485"
+	},
+	"item": [
+		{
+			"name": "localhost",
+			"item": [
+				{
+					"name": "prevMonht/ateneaExecution Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/kpi/prevMonht/ateneaExecution",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"kpi",
+								"prevMonht",
+								"ateneaExecution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lastMonht/ateneaExecution Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/kpi/lastMonht/ateneaExecution",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"kpi",
+								"lastMonht",
+								"ateneaExecution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prevMonht/channelExecutions Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/kpi/prevMonht/channelExecutions",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"kpi",
+								"prevMonht",
+								"channelExecutions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lastMonht/channelExecutions Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/kpi/lastMonht/channelExecutions",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"kpi",
+								"lastMonht",
+								"channelExecutions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prevMonht/kpi Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/kpi/prevMonht/kpi",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"kpi",
+								"prevMonht",
+								"kpi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lastMonht/kpi Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/kpi/lastMonht/kpi",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"kpi",
+								"lastMonht",
+								"kpi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top/trx Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/top/trx",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"top",
+								"trx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top/trxLasteSixMoth Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/top/trxLasteSixMoth",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"top",
+								"trxLasteSixMoth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "executionsDate Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriLocalhost}}/executionsDate",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"executionsDate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "securityToken Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var json = JSON.parse(responseBody);\r",
+									"    //pm.globals.set('authorization',json.token)\r",
+									"    postman.setEnvironmentVariable('authorization',json.token)\r",
+									"    console.log('se ha actualizado el token');\r",
+									"    console.log(json.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"juancarlos.coronado@bbva.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uriLocalhost}}/auth/securityToken",
+							"host": [
+								"{{uriLocalhost}}"
+							],
+							"path": [
+								"auth",
+								"securityToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "plandebackend.ddns.net",
+			"item": [
+				{
+					"name": "prevMonht/ateneaExecution",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/prevMonht/ateneaExecution",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"prevMonht",
+								"ateneaExecution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lastMonht/ateneaExecution",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/lastMonht/ateneaExecution",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"lastMonht",
+								"ateneaExecution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prevMonht/channelExecutions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/prevMonht/channelExecutions",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"prevMonht",
+								"channelExecutions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lastMonht/channelExecutions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/lastMonht/channelExecutions",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"lastMonht",
+								"channelExecutions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prevMonht/kpi",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/prevMonht/kpi",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"prevMonht",
+								"kpi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lastMonht/kpi",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/lastMonht/kpi",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"lastMonht",
+								"kpi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top/trx",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/top/trx",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"top",
+								"trx"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top/trxLasteSixMoth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/top/trxLasteSixMoth",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"top",
+								"trxLasteSixMoth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "executionsDate",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{uriProduccion}}/kpi/executionsDate",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"kpi",
+								"executionsDate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "securityToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    var json = JSON.parse(responseBody);\r",
+									"    //pm.globals.set('authorization',json.token)\r",
+									"    postman.setEnvironmentVariable('authorization',json.token)\r",
+									"    console.log('se ha actualizado el token');\r",
+									"    console.log(json.token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"juancarlos.coronado@bbva.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uriProduccion}}/auth/securityToken",
+							"host": [
+								"{{uriProduccion}}"
+							],
+							"path": [
+								"auth",
+								"securityToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "uriProduccion",
+			"value": "http://plandebackend.ddns.net:51234/api/1/",
+			"type": "string"
+		},
+		{
+			"key": "uriLocalhost",
+			"value": "http://localhost:3000/api/1/",
+			"type": "string"
+		}
+	]
+}
