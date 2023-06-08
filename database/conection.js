@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 const dotenvi = require("dotenv").config();
-const querys = require("../database/querys.json");
+const querys = require("./querys.json");
 
 //FUNCION PARA OBTENER EL QUERY DE LA CLASE
 function querySwitch(datos) {
