@@ -28,6 +28,8 @@ router.use("/kpi",validateToken,parametry)
 
 router.use(executionsDate)
 
+router.use("/auth",parametry)
+
 router.post("/auth/securityToken", (req, res) => {
   const { email } = req.body;
   if (email === "" || email == null) {

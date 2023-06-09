@@ -38,6 +38,9 @@ function querySwitch(datos) {
     case 10:
       console.log(`Parametria para grafica`);
       return querys["parametry"];
+    case 11:
+      console.log(`Parametria para front `)
+      return querys["dataFront"]
     default:
       break;
   }
