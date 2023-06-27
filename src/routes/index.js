@@ -2,6 +2,7 @@ const router = require("express").Router();
 const executionAtenea = require("./ateneaExecution");
 const channelExecution = require('./channelExecution')
 const executionsDate = require('./executionsDate')
+const getTokenJira = require("./tokenRoute");
 const kpi = require('./kpi')
 const trx = require('./trx')
 const yearKpi = require('./kpiYear')
@@ -25,6 +26,9 @@ router.use("/top", validateToken,trx);
 router.use("/kpi",validateToken,yearKpi)
 
 router.use("/kpi",validateToken,parametry)
+
+//Obtener datos del token
+router.use("/token", validateToken, getTokenJira);
 
 router.use(executionsDate)
 

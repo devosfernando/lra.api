@@ -39,21 +39,41 @@ function querySwitch(datos) {
       console.log(`Parametria para grafica`);
       return querys["parametry"];
     case 11:
-      console.log(`Parametria para front `)
-      return querys["dataFront"]
+      console.log(`Parametria para front `);
+      return querys["dataFront"];
+    case 12:
+      console.log(`Parametria DB para JIRA`);
+      return querys["oauthproxy"];
+    case 13:
+      console.log(`Insert DB para JIRA`);
+      return querys["insertOauthproxy"];
     default:
       break;
   }
 }
 
-async function prepareConnection(queryf) {
-  let datosConexion = mysql.createConnection({
-    host: process.env.HOST,
-    port: process.env.PORT,
-    database: process.env.DATABASE,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-  });
+async function prepareConnection(queryf, databaseCon = "planbackend") {
+  let datosConexion;
+
+  console.log(`BASE DE DATOS ${databaseCon}`);
+
+  if (databaseCon == "planbackend") {
+    datosConexion = mysql.createConnection({
+      host: process.env.HOST,
+      port: process.env.PORT,
+      database: process.env.DATABASE,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+    });
+  } else {
+    datosConexion = mysql.createConnection({
+      host: process.env.HOST,
+      port: process.env.PORT,
+      database: process.env.DATABASE_JIRA,
+      user: process.env.USER,
+      password: process.env.PASSWORD,
+    });
+  }
 
   return await new Promise((resolve, reject) => {
     datosConexion.connect(function (err) {
@@ -80,6 +100,40 @@ async function prepareConnection(queryf) {
   });
 }
 
+async function insertData(fecha,token,queryf) {
+  let datosConexion = mysql.createConnection({
+    host: process.env.HOST,
+    port: process.env.PORT,
+    database: process.env.DATABASE_JIRA,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+  });
+
+  return await new Promise((resolve, reject) => {
+    datosConexion.connect(function (err) {
+      if (err) {
+        console.log(`Error de conexion: ${err.stack} `);
+        endConection(datosConexion);
+      } else {
+        console.log(`Datos desde el queryf ${queryf}`);
+        let respuesta = querySwitch(queryf);
+        console.log(respuesta);
+
+        datosConexion.query(querySwitch(queryf),[fecha,token], (err, result) => {
+          if (err) {
+            reject(err);
+            endConection(datosConexion);
+          }
+          if (result) {
+            resolve(result);
+            endConection(datosConexion);
+          }
+        });
+      }
+    });
+  });
+}
+
 async function endConection(datosConexion) {
   // Cierra la conexión
   datosConexion.end(function (error) {
@@ -89,4 +143,5 @@ async function endConection(datosConexion) {
 
 module.exports = {
   prepareConnection,
+  insertData,
 };

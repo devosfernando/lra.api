@@ -20,5 +20,7 @@
   "executionsDate": "SELECT  * FROM executionsDate",
   "parametry" : "select * from planbackend.parametry p ",
   "kpiYear": "SELECT LAST_DAY(hist_date) AS ultimo_dia_del_mes, hist_EjecEther AS ether,hist_EjecHost as host,(hist_kpiEstimado * 100)  as kpiestimado,round((hist_kpiReal* 100),2)  as kpireal from planbackend.history where hist_date in (SELECT LAST_DAY(hist_date) AS ultimo_dia_del_mes FROM planbackend.history WHERE YEAR(hist_date) >= YEAR(CURDATE()) GROUP BY YEAR(hist_date), MONTH(hist_date))",
-  "dataFront": "SELECT * FROM parametry WHERE field = 'firebase'"
+  "dataFront": "SELECT * FROM parametry WHERE field = 'firebase'",
+  "oauthproxy": "SELECT * FROM cookie  ORDER BY date_create  DESC LIMIT 1",
+  "insertOauthproxy": "UPDATE cookie SET date_use = ?  WHERE value = ?"
 }
