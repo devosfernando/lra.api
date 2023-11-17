@@ -6,7 +6,7 @@ controlador = {
 }
 
 # Definición de la función executionDate
-def execution_date(req, res):
+def executionDate(req, res):
     try:
         result = prepareConnection(8)
         res.status_code = 200
@@ -23,7 +23,5 @@ def execution_date(req, res):
             'response': str(e)
         })
 
-# Asignación de la función al controlador
-controlador['executionDate'] = execution_date
 
 # Exportación del controlador

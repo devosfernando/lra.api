@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify
-from controllers.channelExecution import listarPrevMonht, listarLastMonht
+from controllers.channelExecution import listarPrevMonth, listarLastMonth
 
-routering = Blueprint('routering', __name__)
+routerChannelExecution = Blueprint('routering', __name__)
 
-@routering.route('/prevMonht/channelExecutions', methods=['GET'])
+@routerChannelExecution.route('/prevMonht/channelExecutions', methods=['GET'])
 def prev_month_channel_executions_route():
-    return listarPrevMonht(request, jsonify)
+    return listarPrevMonth(request, jsonify)
 
-@routering.route('/lastMonht/channelExecutions', methods=['GET'])
+@routerChannelExecution.route('/lastMonht/channelExecutions', methods=['GET'])
 def last_month_channel_executions_route():
-    return listarLastMonht(request, jsonify)
+    return listarLastMonth(request, jsonify)

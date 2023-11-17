@@ -1,49 +1,45 @@
-var { prepareConnection } = require("../../database/conection");
+from database.conection import prepareConnection
 
-const controlador = {
-  listar: {},
-};
+controlador = {
+    'listar': {},
+}
 
-controlador.listarTrx = (req, res) => {
+def listarTrx(req, res):
+    try:
+        resolve = prepareConnection(6)
+        res.status_code = 200
+        return {
+            'status': 200,
+            'message': 'Ok',
+            'response': resolve
+        }
+    except Exception as e:
+        res.status_code = 500
+        return {
+            'status': 500,
+            'message': 'Internal Server Error',
+            'response': str(e)
+        }
 
-  prepareConnection(6)
-    .then((resolve) => {
-      res.status(200).json({
-        status: 200,
-        message: "Ok",
-        response: resolve,
-      });
-      console.log(resolve);
-    })
-    .catch((reject) => {
-      res.status(500).json({
-        status: 500,
-        message: "Internal Server Error",
-        response: reject,
-      });
-      console.log(reject);
-    });
-};
+def listarSixMonth(req, res):
+    try:
+        resolve = prepareConnection(7)
+        res.status_code = 200
+        return {
+            'status': 200,
+            'message': 'Ok',
+            'response': resolve
+        }
+    except Exception as e:
+        res.status_code = 500
+        return {
+            'status': 500,
+            'message': 'Internal Server Error',
+            'response': str(e)
+        }
 
-controlador.listarSixMonht = (req, res) => {
+# Asignación de funciones al controlador
+controlador['listarTrx'] = listarTrx
+controlador['listarSixMonth'] = listarSixMonth
 
-  prepareConnection(7)
-    .then((resolve) => {
-      res.status(200).json({
-        status: 200,
-        message: "Ok",
-        response: resolve,
-      });
-      console.log(resolve);
-    })
-    .catch((reject) => {
-      res.status(500).json({
-        status: 500,
-        message: "Internal Server Error",
-        response: reject,
-      });
-      console.log(reject);
-    });
-};
-
-module.exports = controlador;
+# Exportación del controlador

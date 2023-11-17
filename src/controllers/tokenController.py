@@ -1,26 +1,15 @@
 from flask import jsonify, request
 from services.tokenServices import validateData, validateDataInsert
 
-controlador = {
-    'listar': {},
-}
 
-def get_token_jira(req, res):
+def getTokenJira(req, res):
     try:
-        validateData().then(resolve => {
-            res.status_code = 200
-            return jsonify({
-                'status': 200,
-                'message': 'Ok',
-                'response': resolve
-            })
-        }).catch(reject => {
-            res.status_code = 200
-            return jsonify({
-                'status': 200,
-                'message': 'Ok',
-                'response': reject
-            })
+        resolve = validateData()
+        res.status_code = 200
+        return jsonify({
+            'status': 200,
+            'message': 'Ok',
+            'response': resolve
         })
     except Exception as e:
         res.status_code = 500
@@ -30,22 +19,14 @@ def get_token_jira(req, res):
             'response': str(e)
         })
 
-def update_date(req, res):
+def updateDate(req, res):
     try:
-        validateDataInsert(req.json).then(resp => {
-            res.status_code = 200
-            return jsonify({
-                'status': 200,
-                'message': 'Ok',
-                'response': resp
-            })
-        }).catch(err => {
-            res.status_code = 200
-            return jsonify({
-                'status': 200,
-                'message': 'Ok',
-                'response': err
-            })
+        resp = validateDataInsert(req.json)
+        res.status_code = 200
+        return jsonify({
+            'status': 200,
+            'message': 'Ok',
+            'response': resp
         })
     except Exception as e:
         res.status_code = 500
@@ -55,8 +36,9 @@ def update_date(req, res):
             'response': str(e)
         })
 
-# Asignación de funciones al controlador
-controlador['getTokenJira'] = get_token_jira
-controlador['updateDate'] = update_date
+# Asignación de funciones al controlador (ya no necesitas esta parte si usas el enfoque de decoradores)
+# controlador['getTokenJira'] = get_token_jira
+# controlador['updateDate'] = update_date
 
-# Exportación del controlador
+# Exportación del controlador (también puedes exportar las funciones directamente si usas el enfoque de decoradores)
+# return controlador

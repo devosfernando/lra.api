@@ -1,59 +1,58 @@
 from flask import Blueprint, request, jsonify
-from jwt.jsonWebToken import generateAccessToken, validateToken, validarUserDominio
-from ateneaExecution import executionAtenea
-from channelExecution import channelExecution
-from executionsDate import executionsDate
-from tokenRoute import getTokenJira
-from kpi import kpi
-from trx import trx
-from kpiYear import yearKpi
-from parametry import parametry
+
+#from src.jwt.jsonWebToken import generateAccessToken, validateToken, validarUserDominio
+from routes.ateneaExecution import routerAteneaExecution
+from routes.channelExecution import routerChannelExecution
+from routes.executionsDate import routerExecutionsDate
+from routes.tokenRoute import getTokenJira
+from routes.kpi import routerkpi
+from routes.trx import routerTrx
+from routes.kpiYear import routerYearKpi
+from routes.parametry import routerParametry
 
 router = Blueprint('router', __name__)
 
 @router.route('/kpi', methods=['GET', 'POST'])
-@validateToken
-def kpi_route():
-    return executionAtenea(request)
+def atenea_kpi_prevMonth_route():
+    return routerAteneaExecution(request)
 
-@router.route('/kpi', methods=['GET', 'POST'])
-@validateToken
+@router.route('/channel/execution', methods=['GET', 'POST']) 
 def channel_execution_route():
-    return channelExecution(request)
+    return routerChannelExecution(request)
 
-@router.route('/kpi', methods=['GET', 'POST'])
-@validateToken
+@router.route('/kpi', methods=['GET', 'POST']) 
 def kpi_route():
-    return kpi(request)
+    return routerkpi(request)
 
-@router.route('/top', methods=['GET', 'POST'])
-@validateToken
+@router.route('/trx', methods=['GET', 'POST'])
+ 
 def trx_route():
-    return trx(request)
+    return routerTrx(request)
 
-@router.route('/kpi', methods=['GET', 'POST'])
-@validateToken
+@router.route('/year/kpi', methods=['GET', 'POST'])
+ 
 def year_kpi_route():
-    return yearKpi(request)
+    return routerYearKpi(request)
 
-@router.route('/kpi', methods=['GET', 'POST'])
-@validateToken
-def parametry_route():
-    return parametry(request)
-
-@router.route('/token', methods=['GET', 'POST'])
-@validateToken
+@router.route('/token/jira', methods=['GET', 'POST'])
+ 
 def get_token_jira_route():
     return getTokenJira(request)
 
 @router.route('/executionsDate', methods=['GET', 'POST'])
 def executions_date_route():
-    return executionsDate(request)
+    return routerExecutionsDate(request)
+
+@router.route('/parametry', methods=['GET', 'POST'])
+ 
+def parametry_route():
+    return routerParametry(request)
 
 @router.route('/auth/parametry', methods=['GET', 'POST'])
 def auth_parametry_route():
-    return parametry(request)
+    return routerParametry(request)
 
+bar ="""
 @router.route('/auth/securityToken', methods=['POST'])
 def security_token_route():
     email = request.json.get('email', '')
@@ -75,5 +74,4 @@ def security_token_route():
             return jsonify({
                 'status': 403,
                 'message': 'Access Denied'
-            }), 403
-
+            }), 403"""

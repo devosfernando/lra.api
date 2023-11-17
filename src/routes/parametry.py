@@ -1,14 +1,12 @@
 from flask import Blueprint, request, jsonify
-from jwt.jsonWebToken import validateToken
 from controllers.parametry import listarParametry, getParametryFront
 
-routering = Blueprint('routering', __name__)
+routerParametry = Blueprint('routering', __name__)
 
-@routering.route('/parametry', methods=['GET'])
-@validateToken
+@routerParametry.route('/parametry', methods=['GET'])
 def parametry_route():
     return listarParametry(request, jsonify)
 
-@routering.route('/parametry/data', methods=['GET'])
+@routerParametry.route('/parametry/data', methods=['GET'])
 def parametry_data_route():
     return getParametryFront(request, jsonify)

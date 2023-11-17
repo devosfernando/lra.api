@@ -5,7 +5,7 @@ controlador = {
     'listar': {},
 }
 
-def listar_last_month(req, res):
+def listarLastMonth(req, res):
     try:
         result = prepareConnection(5)
         res.status_code = 200
@@ -22,7 +22,7 @@ def listar_last_month(req, res):
             'response': str(e)
         })
 
-def listar_prev_month(req, res):
+def listarPrevMonth(req, res):
     try:
         result = prepareConnection(2)
         res.status_code = 200
@@ -38,9 +38,3 @@ def listar_prev_month(req, res):
             'message': 'Internal Server Error',
             'response': str(e)
         })
-
-# Asignación de funciones al controlador
-controlador['listarLastMonht'] = listar_last_month
-controlador['listarPrevMonht'] = listar_prev_month
-
-# Exportación del controlador

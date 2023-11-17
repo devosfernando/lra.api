@@ -5,7 +5,7 @@ controlador = {
     'listar': {},
 }
 
-def kpi_year(req, res):
+def kpiYear(req, res):
     try:
         result = prepareConnection(9)
         res.status_code = 200
@@ -23,6 +23,6 @@ def kpi_year(req, res):
         })
 
 # Asignación de funciones al controlador
-controlador['kpiYear'] = kpi_year
+controlador['kpiYear'] = kpiYear
 
 # Exportación del controlador

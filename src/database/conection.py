@@ -6,13 +6,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+script_dir = os.path.dirname(__file__)  # Get the directory of the script
+file_path = os.path.join(script_dir, 'querys.json')
+
 # Cargar las consultas desde el archivo JSON
-with open('querys.json', 'r') as file:
+with open(file_path, 'r') as file:
     querys = json.load(file)
 
 def query_switch(datos):
     switcher = {
-        0: "Kpi mes anterior",
+        #0: "Kpi mes anterior",
+        0: "Kpi.prevMonth.kpi",
         1: "Ejecuciones del mes anterior Atenea",
         2: "Canal Ejecuciones Mes anterior",
         3: "Kpi mes actual",
@@ -29,7 +33,7 @@ def query_switch(datos):
     }
     return switcher.get(datos, "Invalid query index")
 
-def prepare_connection(queryf, database_con="planbackend"):
+def prepareConnection(queryf, database_con="planbackend"):
     datos_conexion = {}
     
     print(f"BASE DE DATOS {database_con}")
@@ -66,7 +70,7 @@ def prepare_connection(queryf, database_con="planbackend"):
     finally:
         connection.close()
 
-def insert_data(fecha, token, queryf):
+def insertData(fecha, token, queryf):
     datos_conexion = {
         "host": os.environ.get("HOST"),
         "port": int(os.environ.get("PORT")),
@@ -93,9 +97,9 @@ def insert_data(fecha, token, queryf):
 
 # Ejemplo de uso
 # reemplaza 0 con el índice del caso que deseas probar
-result = prepare_connection(0)
-print(result)
+#result = prepareConnection(0)
+#print(result)
 
 # reemplaza 13 con el índice del caso que deseas probar
-result_insert = insert_data("2023-01-01", "example_token", 13)
-print(result_insert)
+#result_insert = insertData("2023-01-01", "example_token", 13)
+#print(result_insert)

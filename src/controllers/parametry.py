@@ -5,7 +5,7 @@ controlador = {
     'listarParametry': {},
 }
 
-def listar_parametry(req, res):
+def listarParametry(req, res):
     try:
         result = prepareConnection(10)
         res.status_code = 200
@@ -22,7 +22,7 @@ def listar_parametry(req, res):
             'response': str(e)
         })
 
-def get_parametry_front(req, res):
+def getParametryFront(req, res):
     try:
         result = prepareConnection(11)
         res.status_code = 200
@@ -39,7 +39,7 @@ def get_parametry_front(req, res):
             'response': str(e)
         })
 
-controlador['listarParametry'] = listar_parametry
-controlador['getParametryFront'] = get_parametry_front
+controlador['listarParametry'] = listarParametry
+controlador['getParametryFront'] = getParametryFront
 
 # Exportación del controlador

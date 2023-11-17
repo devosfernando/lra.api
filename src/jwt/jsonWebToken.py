@@ -1,14 +1,15 @@
 from flask import Flask, request, jsonify
 import jwt
 import os
+import asyncio
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('API_ACCES_KEY')
 
-def generate_access_token(user):
+def generateAccessToken(user):
     return jwt.encode({'user': user}, app.config['SECRET_KEY'], algorithm='HS256')
 
-def validate_token(req, res, next):
+def validateToken(req, res, next):
     access_token = req.headers.get('Authorization')
 
     if not access_token:
@@ -21,19 +22,19 @@ def validate_token(req, res, next):
     except jwt.ExpiredSignatureError:
         return jsonify({'status': 400, 'message': 'Access denied, token expired or incorrect'}), 400
 
-async def validar_user_dominio(user):
+async def validarUserDominio(user):
     dominio = user[user.index('@'):]
     return dominio.lower() == '@bbva.com'
 
-@app.route('/generate_token', methods=['POST'])
-def generate_token():
+@app.route('/generateToken', methods=['POST'])
+async def generateToken():
     email = request.json.get('email', '')
     if not email:
         return jsonify({'status': 400, 'message': 'Bad Request'}), 400
 
     try:
-        if await validar_user_dominio(email):
-            access_token = generate_access_token(email)
+        if await validarUserDominio(email):
+            access_token = generateAccessToken(email)
             return jsonify({'status': 200, 'message': 'Token generated successfully', 'token': access_token.decode('utf-8')})
         else:
             return jsonify({'status': 403, 'message': 'Access denied'}), 403
